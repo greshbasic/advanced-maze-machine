@@ -1,11 +1,17 @@
 Updated version of my old maze solver: https://github.com/greshbasic/maze-machine
 
 Differences:
+
   This version is...
+  
     - Written in python instead of Java
+    
     - Written by scratch opposed to having some files supplied
+    
     - Includes 3 search algorithms opposed to just 1
+    
     - Includes the ability to save results and compare to other mazes
+    
     - Cleaner UI
 
 
