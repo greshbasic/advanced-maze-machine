@@ -1,4 +1,3 @@
-from Maze import Maze
 import heapq
 import os
 from time import sleep, time
