@@ -8,7 +8,7 @@ Differences:
     
     - Written by scratch opposed to having some files supplied
     
-    - Includes 3 search algorithms opposed to just 1
+    - Includes 3 search algorithms (DFS, BFS, and GBFS) opposed to just 1 (BFS)
     
     - Includes the ability to save results and compare to other mazes
     
