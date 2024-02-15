@@ -17,7 +17,6 @@ if __name__ == "__main__":
         print("| 1: Breadth-First Search     |")
         print("| 2: Depth-First Search       |")
         print("| 3: Greedy Best-First Search |")
-    #     print("| 4: A* Search                |")
         print("+-----------------------------+")
         option = int(input("Your selection: "))
 
