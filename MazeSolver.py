@@ -3,6 +3,8 @@ import heapq
 import os
 from time import sleep, time
 
+start = 0
+end = 0
 def solve_maze(maze, option):
     if option == 1:
         maze.algo = "BFS"
@@ -15,9 +17,17 @@ def solve_maze(maze, option):
     if option == 3:
         maze.algo = "GBFS"
         greedy(maze)
+        
+    end = time()
+    clear_terminal()
+    maze.print_maze()
+    print("Time taken: {:.2f} seconds".format(end - start))
+    maze.time = "{:.2f}".format(end-start)
             
 def bfs(maze):
+    global start
     start = time()
+    
     maze.print_maze()
     frontier_queue = []
     current = [maze.start_row, 0]
@@ -38,16 +48,11 @@ def bfs(maze):
         visitable = visit_options(maze, current_row, current_col)
         for cell in visitable:
             frontier_queue.append(cell)
-            
-    end = time()
-    clear_terminal()
-    maze.print_maze()
-    print("Time taken: {:.2f} seconds".format(end - start))
-    maze.time = "{:.2f}".format(end-start)
-    
     
 def dfs(maze):
+    global start
     start = time()
+    
     frontier_stack = []
     current = [maze.start_row, 0]
     frontier_stack.append(current)
@@ -67,14 +72,9 @@ def dfs(maze):
         visitable = visit_options(maze, current_row, current_col)
         for cell in visitable:
             frontier_stack.append(cell)
-        
-    end = time()
-    clear_terminal()
-    maze.print_maze()
-    print("Time taken: {:.2f} seconds".format(end - start))
-    maze.time = "{:.2f}".format(end-start)
 
 def greedy(maze):
+    global start
     start = time()
     
     maze.print_maze()
@@ -104,12 +104,6 @@ def greedy(maze):
             max_heur_cell = max(heur_dict, key=heur_dict.get)
             priority = -heur_dict.pop(max_heur_cell) 
             heapq.heappush(frontier_queue, (priority, max_heur_cell))
-            
-    end = time()
-    clear_terminal()
-    maze.print_maze()
-    print("Time taken: {:.2f} seconds".format(end - start))
-    maze.time = "{:.2f}".format(end - start)
     
 def visit_options(maze, current_row, current_col):
     visitable = []
