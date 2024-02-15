@@ -5,6 +5,7 @@ from time import sleep, time
 
 start = 0
 end = 0
+
 def solve_maze(maze, option):
     if option == 1:
         maze.algo = "BFS"
