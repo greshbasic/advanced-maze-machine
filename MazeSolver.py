@@ -15,12 +15,7 @@ def solve_maze(maze, option):
     if option == 3:
         maze.algo = "GBFS"
         greedy(maze)
-        
-    # if option == 4:
-    #     maze.algo = "A*"
-    #     Astar(maze)
-        
-        
+            
 def bfs(maze):
     start = time()
     maze.print_maze()
@@ -116,17 +111,6 @@ def greedy(maze):
     print("Time taken: {:.2f} seconds".format(end - start))
     maze.time = "{:.2f}".format(end - start)
     
-# def Astar(maze):
-#     start = time()
-    
-    
-    
-#     end = time()
-#     clear_terminal()
-#     maze.print_maze()
-#     print("Time taken: {:.2f} seconds".format(end - start))
-#     maze.time = "{:.2f}".format(end-start)
-
 def visit_options(maze, current_row, current_col):
     visitable = []
     
