@@ -2,7 +2,7 @@ Updated version of my old maze solver: https://github.com/greshbasic/maze-machin
 
 Differences:
 
-  This version is...
+    This version is...
   
     - Written in python instead of Java
     
