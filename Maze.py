@@ -8,7 +8,7 @@ class Maze:
         self.end_row = end_row
         self.time = ""
         self.algo = ""
-        self.title = "No Title"
+        self.title = None
         
         self.maze = [[0 for i in range(cols)] for j in range(rows)]
         for i in range(self.rows):

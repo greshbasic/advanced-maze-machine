@@ -1,7 +1,9 @@
 from Maze import Maze
+from MazeMaker import make_maze
 import heapq
 import os
 from time import sleep, time
+from MazeMaker import compare_mazes
 
 def solve_maze(maze, option):
     if option == 1:
@@ -13,8 +15,8 @@ def solve_maze(maze, option):
         dfs(maze)
         
     if option == 3:
-        maze.algo = "Bidir"
-        bidirectional_bfs(maze)
+        maze.algo = "BDS"
+        bidir(maze)
         
     if option == 4:
         maze.algo = "GBFS"
@@ -24,6 +26,41 @@ def solve_maze(maze, option):
         maze.algo = "A*"
         Astar(maze)
         
+    if option == 6:
+        ffa_mazes = []
+        
+        breadth = make_maze(7, 15)
+        breadth.algo = "BFS"
+        ffa_mazes.append(breadth)
+        bfs(breadth)
+        
+        
+        # DFS
+        depth = make_maze(7, 15)
+        depth.algo = "DFS"
+        ffa_mazes.append(depth)
+        dfs(depth)
+        
+        #Bidirectional
+        bds = make_maze(7, 15)
+        bds.algo = "BDS"
+        ffa_mazes.append(bds)
+        bidir(bds)
+        
+        #Greedy best first
+        greed = make_maze(7, 15)
+        greed.algo = "GBFS"
+        ffa_mazes.append(greed)
+        greedy(greed)
+        
+        #A*
+        astar = make_maze(7, 15)
+        astar.algo = "A*"
+        ffa_mazes.append(astar)
+        Astar(astar)
+        
+        clear_terminal()
+        compare_mazes(ffa_mazes)
         
 def bfs(maze):
     start = time()
@@ -53,8 +90,7 @@ def bfs(maze):
     maze.print_maze()
     print("Time taken: {:.2f} seconds".format(end - start))
     maze.time = "{:.2f}".format(end-start)
-    
-    
+      
 def dfs(maze):
     start = time()
     frontier_stack = []
@@ -83,6 +119,54 @@ def dfs(maze):
     print("Time taken: {:.2f} seconds".format(end - start))
     maze.time = "{:.2f}".format(end-start)
 
+def bidir(maze):
+    start = time()
+    
+    # Initialize the start and goal frontier queues
+    start_frontier = [(maze.start_row, 0)]
+    goal_frontier = [(maze.end_row, maze.cols - 1)]
+    
+    # Initialize visited sets for start and goal
+    start_visited = set()
+    goal_visited = set()
+    
+    # Mark start and goal nodes as visited
+    start_visited.add((maze.start_row, 0))
+    goal_visited.add((maze.end_row, maze.cols - 1))
+    
+    while start_frontier and goal_frontier:
+        clear_terminal()
+        maze.print_maze()
+        sleep(0.1)
+        
+        # Explore from the start node
+        current_start = start_frontier.pop(0)
+        start_row, start_col = current_start
+        maze.maze[start_row][start_col].visited = True
+        if current_start in goal_visited:
+            break
+        for neighbor in visit_options(maze, start_row, start_col):
+            if neighbor not in start_visited:
+                start_visited.add(neighbor)
+                start_frontier.append(neighbor)
+        
+        # Explore from the goal node
+        current_goal = goal_frontier.pop(0)
+        goal_row, goal_col = current_goal
+        maze.maze[goal_row][goal_col].visited = True
+        if current_goal in start_visited:
+            break
+        for neighbor in visit_options(maze, goal_row, goal_col):
+            if neighbor not in goal_visited:
+                goal_visited.add(neighbor)
+                goal_frontier.append(neighbor)
+    
+    end = time()
+    clear_terminal()
+    maze.print_maze()
+    print("Time taken: {:.2f} seconds".format(end - start))
+    maze.time = "{:.2f}".format(end - start)
+      
 def greedy(maze):
     start = time()
     
@@ -153,57 +237,7 @@ def Astar(maze):
     maze.print_maze()
     print("Time taken: {:.2f} seconds".format(end - start))
     maze.time = "{:.2f}".format(end - start)
-
-def bidirectional_bfs(maze):
-    start = time()
-    
-    # Initialize the start and goal frontier queues
-    start_frontier = [(maze.start_row, 0)]
-    goal_frontier = [(maze.end_row, maze.cols - 1)]
-    
-    # Initialize visited sets for start and goal
-    start_visited = set()
-    goal_visited = set()
-    
-    # Mark start and goal nodes as visited
-    start_visited.add((maze.start_row, 0))
-    goal_visited.add((maze.end_row, maze.cols - 1))
-    
-    while start_frontier and goal_frontier:
-        clear_terminal()
-        maze.print_maze()
-        sleep(0.1)
-        
-        # Explore from the start node
-        current_start = start_frontier.pop(0)
-        start_row, start_col = current_start
-        maze.maze[start_row][start_col].visited = True
-        if current_start in goal_visited:
-            break
-        for neighbor in visit_options(maze, start_row, start_col):
-            if neighbor not in start_visited:
-                start_visited.add(neighbor)
-                start_frontier.append(neighbor)
-        
-        # Explore from the goal node
-        current_goal = goal_frontier.pop(0)
-        goal_row, goal_col = current_goal
-        maze.maze[goal_row][goal_col].visited = True
-        if current_goal in start_visited:
-            break
-        for neighbor in visit_options(maze, goal_row, goal_col):
-            if neighbor not in goal_visited:
-                goal_visited.add(neighbor)
-                goal_frontier.append(neighbor)
-    
-    end = time()
-    clear_terminal()
-    maze.print_maze()
-    print("Time taken: {:.2f} seconds".format(end - start))
-    maze.time = "{:.2f}".format(end - start)
-    
-    
-    
+   
 def visit_options(maze, current_row, current_col):
     visitable = []
     

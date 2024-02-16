@@ -8,7 +8,6 @@ if __name__ == "__main__":
     mazes = []
     
     while cont:
-        my_maze = make_maze()
         
         clear_terminal()
         
@@ -19,21 +18,30 @@ if __name__ == "__main__":
         print("| 3: Bidirectional Search     |")
         print("| 4: Greedy Best-First Search |")
         print("| 5: A* Search                |")
+        print("| 6: Free-For-All             |")
         print("+-----------------------------+")
-        option = int(input("Your selection: "))
+        option1 = int(input("Your selection: "))
+        
+        if option1 != 6:
+            my_maze = make_maze()
+            solve_maze(my_maze, option1)
+        else:
+            solve_maze(None, 6)
 
-        solve_maze(my_maze, option)
+        
+        if option1 == 6:
+            exit()
         
         print("\n\nPlease make a selection")
         print("+-----------------------------+")
         print("| 1: Save maze results        |")
         print("| 2: Don't save maze results  |")
         print("+-----------------------------+")
-        option = int(input("Your selection: "))
+        option2 = int(input("Your selection: "))
         
         clear_terminal()
  
-        if option == 1:
+        if option2 == 1:
             my_maze.title = input("Please give the maze a title: ")
             mazes.append(my_maze)
     
@@ -43,14 +51,14 @@ if __name__ == "__main__":
         print("| 2: Compare maze results     |")
         print("| 3: Quit                     |")
         print("+-----------------------------+")
-        option = int(input("Your selection: "))
+        option3 = int(input("Your selection: "))
         
         clear_terminal()
         
-        if option == 3:
+        if option3 == 3:
             cont = False
             
-        if option == 2:
+        if option3 == 2:
             cont = compare_mazes(mazes)
             clear_terminal()
             

@@ -2,9 +2,15 @@ from Maze import Maze
 from random import randint as r
 from random import choice as c
 
-def make_maze():
-    rows = int(input("Please enter an amount of rows: "))
-    columns = int(input("Please enter an amount of columns: "))
+def make_maze(row=None, col=None):
+    if not r:
+        rows = int(input("Please enter an amount of rows: "))
+    else:
+        rows = row
+    if not c:
+        columns = int(input("Please enter an amount of columns: "))
+    else:
+        columns = col
     start = r(0, rows-1)
     end = r(0, rows-1)
     
@@ -60,6 +66,9 @@ def compare_mazes(mazes):
     print("\n")
     
     for i, maze in enumerate(sorted_maze_list):
+        if not maze.title:
+            maze.title = maze.algo
+            
         area = maze.rows * maze.cols
         time = float(maze.time)
         time_per_area = time/area
