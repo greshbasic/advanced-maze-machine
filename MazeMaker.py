@@ -1,6 +1,7 @@
 from Maze import Maze
 from random import randint as r
 from random import choice as c
+import os
 
 def make_maze(row=None, col=None):
     if not r:
@@ -81,6 +82,11 @@ def compare_mazes(mazes):
     print("| 2: Quit                     |")
     print("+-----------------------------+")
     option = int(input("Your selection: "))
+    
+    if os.name == 'nt':
+        _ = os.system('cls')
+    else:
+        _ = os.system('clear')
     
     if option == 1:
         return True
