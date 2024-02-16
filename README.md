@@ -4,7 +4,7 @@ Differences:
 
     This version is...
   
-    - Written in python instead of Java
+    - Written in Python instead of Java
     
     - Written by scratch opposed to having some files supplied
     
