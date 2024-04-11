@@ -4,11 +4,11 @@ from random import choice as c
 import os
 
 def make_maze(row=None, col=None):
-    if not r:
+    if not row:
         rows = int(input("Please enter an amount of rows: "))
     else:
         rows = row
-    if not c:
+    if not col:
         columns = int(input("Please enter an amount of columns: "))
     else:
         columns = col
