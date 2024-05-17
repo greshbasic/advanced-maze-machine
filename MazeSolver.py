@@ -28,12 +28,12 @@ def solve_maze(maze, option):
         
     if option == 6:
         ffa_mazes = []
-        
+
+        # BFS
         breadth = make_maze(7, 15)
         breadth.algo = "BFS"
         ffa_mazes.append(breadth)
         bfs(breadth)
-        
         
         # DFS
         depth = make_maze(7, 15)

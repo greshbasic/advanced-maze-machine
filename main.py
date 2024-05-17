@@ -28,7 +28,6 @@ if __name__ == "__main__":
         else:
             solve_maze(None, 6)
 
-        
         if option1 == 6:
             exit()
         
