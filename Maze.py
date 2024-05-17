@@ -14,8 +14,7 @@ class Maze:
         for i in range(self.rows):
             for j in range(self.cols):
                 self.maze[i][j] = MazeCell()
-                
-                
+                  
     def make_cols_string(self):
         
         cols_string = "|"
@@ -92,8 +91,3 @@ class Maze:
             return None
         
         return possible_moves
-            
-        
-    
-        
-        
