@@ -8,10 +8,12 @@ def make_maze(row=None, col=None):
         rows = int(input("Please enter an amount of rows: "))
     else:
         rows = row
+        
     if not col:
         columns = int(input("Please enter an amount of columns: "))
     else:
         columns = col
+        
     start = r(0, rows-1)
     end = r(0, rows-1)
     
