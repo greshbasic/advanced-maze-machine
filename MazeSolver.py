@@ -263,6 +263,7 @@ def h(curr_state, goal_state):
     # Manhattan Distance based heuristic function
     heur = abs(goal_state[1] - curr_state[1]) + abs(goal_state[0] - curr_state[0])
     print(f"h: {heur}")
+
     return heur * -1
 
 def clear_terminal():
